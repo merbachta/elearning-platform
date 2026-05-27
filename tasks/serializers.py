@@ -25,3 +25,9 @@ class SubmissionSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Cannot submit a task past its deadline.")
         return data
 
+    def validate_file(self, value):
+        if value.size > 10 * 1024 * 1024:
+            raise serializers.ValidationError("File size cannot exceed 10MB.")
+        return value
+    
+    

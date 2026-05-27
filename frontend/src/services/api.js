@@ -28,4 +28,38 @@ export const logout = () => {
   localStorage.removeItem('access_token')
   localStorage.removeItem('refresh_token')
 }
+
+// Tasks
+export const getTasks = () => api.get('/tasks/')
+export const getTaskDetail = (id) => api.get(`/tasks/${id}/`)
+
+// Submissions
+import imageCompression from 'browser-image-compression'
+
+export const createSubmission = async (taskId, file) => {
+  let fileToUpload = file
+
+  const imageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+  if (imageTypes.includes(file.type)) {
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true
+    }
+    fileToUpload = await imageCompression(file, options)
+  }
+  const formData = new FormData()
+  formData.append('task', taskId)
+  formData.append('file', fileToUpload)
+  return api.post('/tasks/submissions/', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
+}
+
+export const getSubmissions = () => api.get('/tasks/submissions/list/')
+
+export const evaluateSubmission = (id, grade, feedback) =>
+  api.patch(`/tasks/submissions/${id}/evaluate/`, { grade, feedback })
+
+
 export default api

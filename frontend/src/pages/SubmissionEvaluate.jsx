@@ -42,8 +42,9 @@ function SubmissionEvaluate() {
     <div>
       <button onClick={() => navigate('/submissions')}>Back to submissions</button>
       <h2>Evaluate Submission</h2>
-      <p>Task: {submission.task}</p>
-      <p>Student: {submission.student}</p>
+      <p>Task: {submission.task_title}</p>
+      <p>Student: {submission.student_username}</p>
+      <p>Submitted: {new Date(submission.submitted_at).toLocaleDateString()}</p>
       <a href={submission.file} target="_blank">View file</a>
       {error && <p style={{color: 'red'}}>{error}</p>}
       {success && <p style={{color: 'green'}}>{success}</p>}

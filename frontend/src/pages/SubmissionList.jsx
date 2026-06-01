@@ -1,22 +1,28 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getSubmissions, logout } from '../services/api'
+import api from '../services/api'
 
 function SubmissionList() {
   const [submissions, setSubmissions] = useState([])
   const [error, setError] = useState('')
+  const [userRole, setUserRole] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
-    const fetchSubmissions = async () => {
+    const fetchData = async () => {
       try {
-        const response = await getSubmissions()
-        setSubmissions(response.data)
+        const [subsResponse, profileResponse] = await Promise.all([
+          getSubmissions(),
+          api.get('/users/profile/')
+        ])
+        setSubmissions(subsResponse.data)
+        setUserRole(profileResponse.data.role)
       } catch (err) {
         setError('Error loading submissions.')
       }
     }
-    fetchSubmissions()
+    fetchData()
   }, [])
 
   const handleLogout = () => {
@@ -35,15 +41,16 @@ function SubmissionList() {
         <ul>
           {submissions.map(submission => (
             <li key={submission.id}>
-              <p>Task: {submission.task}</p>
-              <p>Student: {submission.student}</p>
-              <p>Status: {submission.status}</p>
+              <p>Task: {submission.task_title}</p>
+              <p>Student: {submission.student_username}</p>
+              <p>Submitted: {new Date(submission.submitted_at).toLocaleDateString()}</p>
               <p>Grade: {submission.grade ?? 'Not graded yet'}</p>
+              <p>Feedback: {submission.feedback ?? 'No feedback yet'}</p>
               <a href={submission.file} target="_blank">View file</a>
-              {submission.status === 'pending' && (
-                <button onClick={() => navigate(`/submissions/${submission.id}/evaluate`)}>
-                  Evaluate
-                </button>
+              {submission.status === 'pending' && userRole === 'evaluator' && (
+              <button onClick={() => navigate(`/submissions/${submission.id}/evaluate`)}>
+                 Evaluate
+              </button>
               )}
             </li>
           ))}
@@ -52,5 +59,4 @@ function SubmissionList() {
     </div>
   )
 }
-
 export default SubmissionList

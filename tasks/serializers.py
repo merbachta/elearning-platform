@@ -14,12 +14,16 @@ class TaskSerializer(serializers.ModelSerializer):
         return value   
 
 class SubmissionSerializer(serializers.ModelSerializer):
+    student_username = serializers.CharField(source='student.username', read_only=True)
+    task_title = serializers.CharField(source='task.title', read_only=True)
+
     class Meta:
         model = Submission
-        fields = ['id', 'task', 'student', 'file', 'submitted_at', 'status', 'grade', 'feedback']
+        fields = ['id', 'task', 'task_title', 'student', 'student_username', 
+                  'file', 'submitted_at', 'status', 'grade', 'feedback']
         read_only_fields = ['student', 'submitted_at']
-    
-    def validate(self, data): #AÑADIMOS ESTE MÉTODO
+
+    def validate(self, data):
         task = data.get('task')
         if task and task.deadline < timezone.now():
             raise serializers.ValidationError("Cannot submit a task past its deadline.")

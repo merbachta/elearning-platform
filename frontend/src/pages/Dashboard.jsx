@@ -10,12 +10,13 @@ function Dashboard() {
   }
 
   return (
-    <div>
+  <div className="page-container">
+    <div className="card">
       <h2>Welcome to the E-Learning Platform</h2>
-      <p>You are logged in.</p>
-      <button onClick={handleLogout}>Logout</button>
+      <p>Use the navigation bar to access your tasks and submissions.</p>
     </div>
-  )
+  </div>
+)
 }
 
 export default Dashboard

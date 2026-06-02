@@ -25,24 +25,26 @@ function TaskList() {
   }
 
   return (
-    <div>
-      <h2>Tasks</h2>
-      <button onClick={handleLogout}>Logout</button>
-      {error && <p style={{color: 'red'}}>{error}</p>}
-      {tasks.length === 0 ? (
-        <p>No tasks available.</p>
-      ) : (
-        <ul>
-          {tasks.map(task => (
-            <li key={task.id} onClick={() => navigate(`/tasks/${task.id}`)}>
-              <h3>{task.title}</h3>
-              <p>Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  )
+  <div className="page-container">
+    <h2>Tasks</h2>
+    {error && <p className="msg-error">{error}</p>}
+    {tasks.length === 0 ? (
+      <p>No tasks available.</p>
+    ) : (
+      <ul style={{listStyle: 'none', padding: 0}}>
+        {tasks.map(task => (
+          <li
+            key={task.id}
+            className="list-item"
+            onClick={() => navigate(`/tasks/${task.id}`)}>
+            <h3>{task.title}</h3>
+            <p>Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+)
 }
 
 export default TaskList

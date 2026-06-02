@@ -254,3 +254,72 @@ textarea {
   background-color: #FFF5F5;
   color: var(--error);
 }
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .navbar {
+    padding: 0.8rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .list-item {
+    padding: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  input, select, textarea {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .auth-card {
+    margin: 0.5rem;
+    padding: 1.2rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+}

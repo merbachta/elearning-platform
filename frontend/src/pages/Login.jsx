@@ -25,28 +25,28 @@ function Login() {
   }
 
   return (
-    <div>
+  <div className="auth-container">
+    <div className="auth-card">
       <h2>Login</h2>
-      {error && <p style={{color: 'red'}}>{error}</p>}
+      {error && <p className="msg-error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Login</button>
+        <div className="form-group">
+          <label>Username</label>
+          <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange}/>
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange}/>
+        </div>
+        <button type="submit" className="btn btn-primary" style={{width: '100%'}}>
+          Login
+        </button>
       </form>
-      <p>Don't have an account? <a href="/register">Register</a></p>
+      <p className="auth-footer">
+        Don't have an account? <a href="/register">Register</a>
+      </p>
     </div>
-  )
+  </div>
+)
 }
 export default Login

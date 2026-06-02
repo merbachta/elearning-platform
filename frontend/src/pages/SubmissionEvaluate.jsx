@@ -36,34 +36,51 @@ function SubmissionEvaluate() {
     }
   }
 
-  if (!submission) return <p>Loading...</p>
+  if (!submission) return <p className="page-container">Loading...</p>
 
-  return (
-    <div>
-      <button onClick={() => navigate('/submissions')}>Back to submissions</button>
+return (
+  <div className="page-container">
+    <button className="btn btn-outline" onClick={() => navigate('/submissions')}>
+      ← Back to submissions
+    </button>
+    <div className="card" style={{marginTop: '1rem'}}>
       <h2>Evaluate Submission</h2>
-      <p>Task: {submission.task_title}</p>
-      <p>Student: {submission.student_username}</p>
-      <p>Submitted: {new Date(submission.submitted_at).toLocaleDateString()}</p>
-      <a href={submission.file} target="_blank">View file</a>
-      {error && <p style={{color: 'red'}}>{error}</p>}
-      {success && <p style={{color: 'green'}}>{success}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="Grade"
-          value={grade}
-          onChange={(e) => setGrade(e.target.value)}
-          step="0.1"
-        />
-        <textarea
-          placeholder="Feedback"
-          value={feedback}
-          onChange={(e) => setFeedback(e.target.value)}
-        />
-        <button type="submit">Submit evaluation</button>
+      <p><strong>Task:</strong> {submission.task_title}</p>
+      <p><strong>Student:</strong> {submission.student_username}</p>
+      <p><strong>Submitted:</strong> {new Date(submission.submitted_at).toLocaleDateString()}</p>
+      <a href={submission.file} target="_blank" className="btn btn-outline" style={{marginTop: '0.8rem', display: 'inline-block'}}>
+        View file
+      </a>
+    </div>
+    {error && <p className="msg-error">{error}</p>}
+    {success && <p className="msg-success">{success}</p>}
+    <div className="card">
+      <h3>Add evaluation</h3>
+      <form onSubmit={handleSubmit} style={{marginTop: '1rem'}}>
+        <div className="form-group">
+          <label>Grade</label>
+          <input
+            type="number"
+            placeholder="Grade"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
+            step="0.1"
+          />
+        </div>
+        <div className="form-group">
+          <label>Feedback</label>
+          <textarea
+            placeholder="Write your feedback here..."
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit evaluation
+        </button>
       </form>
     </div>
-  )
+  </div>
+)
 }
 export default SubmissionEvaluate

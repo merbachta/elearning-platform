@@ -27,7 +27,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand" onClick={() => navigate('/tasks')}>
-        📚 E-Learning Platform
+        E-Learning Platform
       </div>
       <div className="navbar-links">
         <button className="nav-link" onClick={() => navigate('/tasks')}>

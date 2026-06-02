@@ -31,32 +31,39 @@ function SubmissionList() {
   }
 
   return (
-    <div>
-      <h2>Submissions</h2>
-      <button onClick={handleLogout}>Logout</button>
-      {error && <p style={{color: 'red'}}>{error}</p>}
-      {submissions.length === 0 ? (
-        <p>No submissions available.</p>
-      ) : (
-        <ul>
-          {submissions.map(submission => (
-            <li key={submission.id}>
-              <p>Task: {submission.task_title}</p>
-              <p>Student: {submission.student_username}</p>
-              <p>Submitted: {new Date(submission.submitted_at).toLocaleDateString()}</p>
-              <p>Grade: {submission.grade ?? 'Not graded yet'}</p>
-              <p>Feedback: {submission.feedback ?? 'No feedback yet'}</p>
-              <a href={submission.file} target="_blank">View file</a>
+  <div className="page-container">
+    <h2>Submissions</h2>
+    {error && <p className="msg-error">{error}</p>}
+    {submissions.length === 0 ? (
+      <p>No submissions available.</p>
+    ) : (
+      <ul style={{listStyle: 'none', padding: 0}}>
+        {submissions.map(submission => (
+          <li key={submission.id} className="list-item" style={{cursor: 'default'}}>
+            <h3>{submission.task_title}</h3>
+            <p><strong>Student:</strong> {submission.student_username}</p>
+            <p><strong>Submitted:</strong> {new Date(submission.submitted_at).toLocaleDateString()}</p>
+            <p><strong>Status:</strong> {submission.status}</p>
+            <p><strong>Grade:</strong> {submission.grade ?? 'Not graded yet'}</p>
+            <p><strong>Feedback:</strong> {submission.feedback ?? 'No feedback yet'}</p>
+            <div style={{marginTop: '0.8rem', display: 'flex', gap: '0.5rem'}}>
+              <a href={submission.file} target="_blank" className="btn btn-outline">
+                View file
+              </a>
               {submission.status === 'pending' && userRole === 'evaluator' && (
-              <button onClick={() => navigate(`/submissions/${submission.id}/evaluate`)}>
-                 Evaluate
-              </button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => navigate(`/submissions/${submission.id}/evaluate`)}
+                >
+                  Evaluate
+                </button>
               )}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  )
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+)
 }
 export default SubmissionList

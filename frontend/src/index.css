@@ -323,3 +323,18 @@ textarea {
     font-size: 1.1rem;
   }
 }
+
+@media (hover: none) {
+  .list-item:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+  .btn:hover {
+    opacity: 1;
+  }
+  .nav-link:hover {
+    background-color: transparent;
+    color: var(--grey-dark);
+  }
+}
+

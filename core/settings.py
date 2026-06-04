@@ -155,3 +155,7 @@ SIMPLE_JWT = {
 
 # Modelo de usuario personalizado
 AUTH_USER_MODEL = 'users.User'
+
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'submissions')

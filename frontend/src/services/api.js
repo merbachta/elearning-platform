@@ -46,8 +46,11 @@ export const createSubmission = async (taskId, file) => {
       maxWidthOrHeight: 1920,
       useWebWorker: true
     }
-    fileToUpload = await imageCompression(file, options)
+    const compressedBlob = await imageCompression(file, options)
+    // Preservar el nombre original del archivo
+    fileToUpload = new File([compressedBlob], file.name, { type: compressedBlob.type })
   }
+
   const formData = new FormData()
   formData.append('task', taskId)
   formData.append('file', fileToUpload)

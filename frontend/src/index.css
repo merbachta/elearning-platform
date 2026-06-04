@@ -70,6 +70,13 @@ a:hover {
   transition: opacity 0.2s;
 }
 
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .btn:hover {
   opacity: 0.85;
 }

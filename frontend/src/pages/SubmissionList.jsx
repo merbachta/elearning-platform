@@ -50,6 +50,9 @@ function SubmissionList() {
               <a href={submission.file} target="_blank" className="btn btn-outline">
                 View file
               </a>
+              <a href={submission.file} download className="btn btn-secondary">
+                Download
+              </a>
               {submission.status === 'pending' && userRole === 'evaluator' && (
                 <button
                   className="btn btn-secondary"

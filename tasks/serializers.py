@@ -30,8 +30,13 @@ class SubmissionSerializer(serializers.ModelSerializer):
         return data
 
     def validate_file(self, value):
-        if value.size > 10 * 1024 * 1024:
-            raise serializers.ValidationError("File size cannot exceed 10MB.")
+        video_types = ['video/mp4', 'video/avi', 'video/mov', 'video/mkv']
+        if value.content_type in video_types:
+            if value.size > 50 * 1024 * 1024:  # 50MB for videos
+                raise serializers.ValidationError("Video files cannot exceed 50MB.")
+        else:
+            if value.size > 10 * 1024 * 1024:  # 10MB for other files (pdfs, images)
+                raise serializers.ValidationError("File size cannot exceed 10MB.")
         return value
     
     

@@ -40,9 +40,7 @@ function SubmissionEvaluate() {
 
 return (
   <div className="page-container">
-    <button className="btn btn-outline" onClick={() => navigate('/submissions')}>
-      ← Back to submissions
-    </button>
+    <button className="btn btn-outline" onClick={() => navigate('/submissions')}>← Back to submissions </button>
     <div className="card" style={{marginTop: '1rem'}}>
       <h2>Evaluate Submission</h2>
       <p><strong>Task:</strong> {submission.task_title}</p>
@@ -51,36 +49,24 @@ return (
       <a href={submission.file} target="_blank" className="btn btn-outline" style={{marginTop: '0.8rem', display: 'inline-block'}}>
         View file
       </a>
+      <a href={submission.file} download className="btn btn-secondary" style={{marginTop: '0.8rem', display: 'inline-block'}}>
+        Download
+      </a>
     </div>
     {error && <p className="msg-error">{error}</p>}
     {success && <p className="msg-success">{success}</p>}
     <div className="card">
       <h3>Add evaluation</h3>
       <form onSubmit={handleSubmit} style={{marginTop: '1rem'}}>
-        <div className="form-group">
-          <label>Grade</label>
-          <input
-            type="number"
-            placeholder="Grade"
-            value={grade}
-            onChange={(e) => setGrade(e.target.value)}
-            step="0.1"
-          />
+        <div className="form-group"> <label>Grade</label>
+          <input type="number" placeholder="Grade" value={grade} onChange={(e) => setGrade(e.target.value)} step="0.1"/>
         </div>
-        <div className="form-group">
-          <label>Feedback</label>
-          <textarea
-            placeholder="Write your feedback here..."
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
-          />
+        <div className="form-group"> <label>Feedback</label>
+          <textarea placeholder="Write your feedback here..." value={feedback} onChange={(e) => setFeedback(e.target.value)}/>
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit evaluation
-        </button>
+        <button type="submit" className="btn btn-primary"> Submit evaluation </button>
       </form>
     </div>
   </div>
-)
-}
+)}
 export default SubmissionEvaluate

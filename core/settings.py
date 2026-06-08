@@ -134,7 +134,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # CORS - permite comunicación con el frontend React
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Puerto por defecto de React 
+    "http://localhost:5173",
+    "https://elearning-frontend-x2lv.onrender.com", 
 ]
 
 # REST Framework - configuración de autenticación

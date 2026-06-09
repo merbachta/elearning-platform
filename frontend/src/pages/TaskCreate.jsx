@@ -39,39 +39,20 @@ function TaskCreate() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Title</label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Task title"
-              value={formData.title}
-              onChange={handleChange}
-            />
+            <input type="text" name="title" placeholder="Task title" value={formData.title} onChange={handleChange}/>
           </div>
           <div className="form-group">
             <label>Description</label>
-            <textarea
-              name="description"
-              placeholder="Task description"
-              value={formData.description}
-              onChange={handleChange}
-            />
+            <textarea name="description" placeholder="Task description" value={formData.description} onChange={handleChange}/>
           </div>
           <div className="form-group">
             <label>Deadline</label>
-            <input
-              type="datetime-local"
-              name="deadline"
-              value={formData.deadline}
-              onChange={handleChange}
-            />
+            <input type="datetime-local" name="deadline" value={formData.deadline} onChange={handleChange}/>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Create Task
-          </button>
+          <button type="submit" className="btn btn-primary"> Create Task</button>
         </form>
       </div>
     </div>
   )
 }
-
 export default TaskCreate

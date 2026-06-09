@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate, useLocation, lazy, Suspense } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Register from './pages/Register'
 import Login from './pages/Login'

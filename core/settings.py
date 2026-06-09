@@ -39,11 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Librerías instaladas
+    # Installed librairies
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt',
-    # Nuestras apps
+    # Added apps
     'users',
     'tasks',
 ]

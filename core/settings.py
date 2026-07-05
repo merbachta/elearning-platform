@@ -137,6 +137,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://elearning-frontend-x2lv.onrender.com", 
 ]
+CORS_ALLOW_ALL_ORIGINS = True 
 
 # REST Framework - configuración de autenticación
 REST_FRAMEWORK = {

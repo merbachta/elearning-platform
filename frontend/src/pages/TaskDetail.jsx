@@ -55,7 +55,7 @@ return (
           <label>Select file</label>
           <input
             type="file"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={(e) => setFile(e.target.files)}
           />
         </div>
         <button type="submit" className="btn btn-primary">
